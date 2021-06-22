@@ -28,11 +28,11 @@ public class Address extends Auditable {
     public Address() {
     }
 
-    public Address(String street, String city, String state, String zipCode, Contact contact) {
+    public Address(String street, String city, String state, String zip, Contact contact) {
         this.street = street;
         this.city = city;
         this.state = state;
-        this.zip = zipCode;
+        this.zip = zip;
         this.contact = contact;
     }
     // region Getters and Setters
@@ -77,11 +77,11 @@ public class Address extends Auditable {
         this.state = state;
     }
 
-    public String getZipCode() {
+    public String getZip() {
         return zip;
     }
 
-    public void setZipCode(String zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
 

@@ -25,6 +25,7 @@ public class Contact
     private Name name;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @Column(name = "phone")
     private List<Phone> phone;
 
     private String email;
@@ -78,4 +79,6 @@ public class Contact
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }

@@ -15,29 +15,25 @@ public class Phone extends Auditable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "contact_id")
     private Contact contact;
 
     @Column(name = "type")
-    private Type type;
+    private String type;
     private String number;
 
-    public enum Type{
-        home, work, mobile
-    }
     public Phone() {
     }
 
-    public Phone(String number, Type type) {
+    public Phone(String number, String type) {
         this.number = number;
         this.type = type;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(String type) {
         this.type = type;
     }
 

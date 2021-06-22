@@ -1,7 +1,9 @@
 package com.example.javacontacts.controllers;
 
+import com.example.javacontacts.dto.CallListDto;
 import com.example.javacontacts.models.Contact;
 import com.example.javacontacts.services.ContactService;
+import org.h2.command.dml.Call;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -35,7 +37,7 @@ public class ContactController {
     }
     @GetMapping(value = "/contacts/call-list", produces = {"application/json"})
     public ResponseEntity<?> getCallList(HttpServletRequest request) {
-        List<Contact> contact = contactService.getCallList();
+        List<CallListDto> contact = contactService.getCallList();
         return new ResponseEntity<>(contact, HttpStatus.OK);
     }
     @PostMapping(value = "/contacts", consumes = "application/json")

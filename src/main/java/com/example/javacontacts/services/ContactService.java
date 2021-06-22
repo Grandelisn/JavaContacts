@@ -1,5 +1,6 @@
 package com.example.javacontacts.services;
 
+import com.example.javacontacts.dto.CallListDto;
 import com.example.javacontacts.models.Contact;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface ContactService {
 
     Contact findContactById(long id);
 
-    List<Contact> getCallList();
+    List<CallListDto> getCallList();
 
     void delete(long id);
 

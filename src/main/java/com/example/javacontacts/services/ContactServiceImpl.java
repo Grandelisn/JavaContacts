@@ -1,8 +1,12 @@
 package com.example.javacontacts.services;
 
+import com.example.javacontacts.dto.CallListDto;
 import com.example.javacontacts.exceptions.ResourceNotFoundException;
 import com.example.javacontacts.models.Contact;
+import com.example.javacontacts.models.Phone;
 import com.example.javacontacts.repository.ContactRepository;
+import com.example.javacontacts.repository.PhoneRepository;
+import org.aspectj.weaver.ast.Call;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,6 +23,9 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     ContactRepository contactRepo;
 
+    @Autowired
+    PhoneRepository phoneRepo;
+
     @Override
     public List<Contact> findAll() {
         List<Contact> list = new ArrayList<>();
@@ -33,8 +40,41 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> getCallList(){
-        return contactRepo.getCallList();
+    public List<CallListDto> getCallList(){
+        List<Contact> list = new ArrayList<>();
+        List<CallListDto> callListDtos = new ArrayList<>();
+        contactRepo.findCallList().iterator().forEachRemaining(list::add);
+        Phone test = new Phone();
+        test.setType("home");
+        for (Contact c:
+             list) {
+            CallListDto callList = new CallListDto();
+            callList.setName(c.getName());
+            for (Phone p:
+                 c.getPhone()) {
+                System.out.println("Type: " + p.getType() + "#" + p.getNumber());
+                if(p.getType().equals(test.getType())){
+                    System.out.println("Type: " + p.getType() + "#" + p.getNumber());
+                    callList.setPhone(p);
+                }
+            }
+            callListDtos.add(callList);
+        }
+//        List<CallListDto> callListDtos = new ArrayList<>();
+//        for (Contact c:
+//             list) {
+//            CallListDto cList = new CallListDto();
+//            cList.setName(c.getName());
+//            for (Phone p:
+//                 c.getPhone()) {
+//
+//                if(p.getType() == "home"){
+//                    cList.setPhone(p);
+//                }
+//            }
+//
+//        }
+        return callListDtos;
     }
     @Transactional
     @Override

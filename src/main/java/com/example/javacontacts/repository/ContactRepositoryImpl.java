@@ -1,5 +1,6 @@
 //package com.example.javacontacts.repository;
 //
+//import com.example.javacontacts.dto.CallListDto;
 //import com.example.javacontacts.models.Contact;
 //import org.springframework.stereotype.Component;
 //
@@ -18,9 +19,10 @@
 //    private EntityManager em;
 //
 //    @Override
-//    public List<Contact> getCallList(){
+//    public List<CallListDto> getCallList(){
 //        CriteriaBuilder cb = em.getCriteriaBuilder();
 //        CriteriaQuery<Contact> cq = cb.createQuery(Contact.class);
-//        Root<Contact> contact = cq.equals(contact.get)
+//        cq.from(Contact.class);
+//
 //    }
 //}
