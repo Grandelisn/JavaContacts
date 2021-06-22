@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * A class used to display error messages in our own chosen format
+ * A class used to display error messages in a chosen format
  */
 public class ErrorDetail {
     /**

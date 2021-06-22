@@ -16,6 +16,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service that holds all logic for the /contacts endpoints
+ */
 @Transactional
 @Service("contactService")
 public class ContactServiceImpl implements ContactService {
@@ -23,24 +26,38 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     ContactRepository contactRepo;
 
-    @Autowired
-    PhoneRepository phoneRepo;
-
+    /**
+     * @see ContactService
+     * @return List of Contacts
+     */
     @Override
     public List<Contact> findAll() {
         List<Contact> list = new ArrayList<>();
         contactRepo.findAll().iterator().forEachRemaining(list::add);
         return list;
     }
-
+    /**
+     * @see ContactService
+     * @param id
+     * @return A contact or an exception if the contact does not exist
+     */
     @Override
     public Contact findContactById(long id) {
         return contactRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Contact with id " + " Not Found!"));
     }
-
+    /**
+     * @see ContactService
+     * @return A list of contacts and their phone numbers(List<>)
+     */
     @Override
     public List<CallListDto> getCallList(){
+        /**
+         * This function grab a list of contacts from the database who have home phone numbers
+         * In the interest of speedy delivery I loop through list assigning names to the DTO and type check each number
+         * This is not efficient and with more robust database functionality in production these can be handled by SQL
+         * queries
+         */
         List<Contact> list = new ArrayList<>();
         List<CallListDto> callListDtos = new ArrayList<>();
         contactRepo.findCallList().iterator().forEachRemaining(list::add);
@@ -52,30 +69,19 @@ public class ContactServiceImpl implements ContactService {
             callList.setName(c.getName());
             for (Phone p:
                  c.getPhone()) {
-                System.out.println("Type: " + p.getType() + "#" + p.getNumber());
                 if(p.getType().equals(test.getType())){
-                    System.out.println("Type: " + p.getType() + "#" + p.getNumber());
                     callList.setPhone(p);
                 }
             }
             callListDtos.add(callList);
         }
-//        List<CallListDto> callListDtos = new ArrayList<>();
-//        for (Contact c:
-//             list) {
-//            CallListDto cList = new CallListDto();
-//            cList.setName(c.getName());
-//            for (Phone p:
-//                 c.getPhone()) {
-//
-//                if(p.getType() == "home"){
-//                    cList.setPhone(p);
-//                }
-//            }
-//
-//        }
         return callListDtos;
     }
+
+    /**
+     * @see ContactService
+     * @param id The id of a contact
+     */
     @Transactional
     @Override
     public void delete(long id) {
@@ -87,11 +93,14 @@ public class ContactServiceImpl implements ContactService {
         }
     }
 
+    /**
+     * @see ContactService
+     * @param contact The contact object you want to save
+     * @return A contact that was saved.
+     */
     @Transactional
     @Override
     public Contact save(Contact contact) {
-
-
         Contact newContact = new Contact();
         newContact.setContactId(contact.getContactId());
         newContact.setName(contact.getName());
@@ -101,10 +110,16 @@ public class ContactServiceImpl implements ContactService {
         return contactRepo.save(newContact);
     }
 
+    /**
+     * @see ContactService
+     * @param contact The contact object you want to update
+     * @param id The id of the contact you are updating
+     * @return The updated contact
+     */
     @Transactional
     @Override
     public Contact update(Contact contact, long id) {
-
+        //To remove the repetitive if statements an algorithm could be written to check each attribute for a change
         Contact currentContact = findContactById(id);
 
         if (contact.getName() != null) {
@@ -119,10 +134,24 @@ public class ContactServiceImpl implements ContactService {
         if (contact.getPhone() != null) {
             currentContact.setPhone(contact.getPhone());
         }
+        if (contact.getName() != null) {
 
+            currentContact.setName(contact.getName());
+        }
+
+        if (contact.getAddress() != null) {
+
+            currentContact.setAddress(contact.getAddress());
+        }
+        if (contact.getEmail() != null) {
+            currentContact.setEmail(contact.getEmail());
+        }
         return contactRepo.save(currentContact);
     }
 
+    /**
+     * @see ContactService
+     */
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public void deleteAll() {

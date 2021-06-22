@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
-
+//This class allows the service to switch between H2 and PostgreSQL databases
 @Configuration
 public class DataSourceConfig {
 

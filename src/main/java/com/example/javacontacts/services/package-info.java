@@ -3,6 +3,6 @@
  * Contains the contract stating what each client can do with the data in the application.
  * The majority of the work of the application resides in this package.
  *
- * @author John Mitchell (john@lambdaschool.com) with Lambda School unless otherwise noted.
+ * @author Nathaniel Grandelis (grandelisn@gmail.com)
  */
 package com.example.javacontacts.services;

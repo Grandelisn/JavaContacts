@@ -14,38 +14,20 @@ public class ValidationError {
      */
     private String message;
 
-    /**
-     * Getter for the code
-     *
-     * @return the code (String) for this validation error
-     */
+    //Getters and Setters
     public String getCode() {
         return Code;
     }
 
-    /**
-     * Setter for the code
-     *
-     * @param code the new code (String) for this validation error
-     */
     public void setCode(String code) {
         Code = code;
     }
 
-    /**
-     * Getter for the message
-     *
-     * @return The message (String) associated with this validation error
-     */
     public String getMessage() {
         return message;
     }
 
-    /**
-     * Setter for the message
-     *
-     * @param message The new message (String) associated with this validation error
-     */
+
     public void setMessage(String message) {
         this.message = message;
     }

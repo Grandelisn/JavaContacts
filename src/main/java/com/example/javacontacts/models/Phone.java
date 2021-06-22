@@ -4,31 +4,49 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
-
+/**
+ * Model that defines a Phone
+ */
 @Entity
 @Table(name = "phone")
 @JsonIgnoreProperties({"contact", "id"})
 public class Phone extends Auditable {
+    /**
+     * Generates a unique id for each phone
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "phoneId")
     private Long id;
-
-    @ManyToOne
+    /**
+     *  Creates a Many To one relationship with one contact able to have multiple phone numbers
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contactId")
     private Contact contact;
-
+    /**
+     *The type (String) for a contact
+     */
     @Column(name = "type")
     private String type;
+    /**
+     *The phone number (String) for a contact
+     */
     private String number;
-
+    /**
+     * Basic constructor for persistence
+     */
     public Phone() {
     }
-
+    /**
+     * Basic constructor for persistence with parameters
+     * Accepts all attributes of a phone.
+     */
     public Phone(String number, String type) {
         this.number = number;
         this.type = type;
     }
-
+    //Getters and Setters
     public String getType() {
         return type;
     }

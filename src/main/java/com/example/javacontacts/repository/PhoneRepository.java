@@ -5,9 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-
+/**
+ * Repository for all Phone Objects
+ */
 public interface PhoneRepository extends CrudRepository<Phone, Long> {
-
-    @Query("from Phone where type = 'home'")
-    List<Phone> findCallList();
 }

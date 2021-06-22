@@ -6,6 +6,6 @@ package com.example.javacontacts.exceptions;
 public class ResourceFoundException
         extends RuntimeException {
     public ResourceFoundException(String message) {
-        super("Error from a Lambda School Application " + message);
+        super("Error from a Example Contacts Application " + message);
     }
 }

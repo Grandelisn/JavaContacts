@@ -3,7 +3,6 @@ package com.example.javacontacts.controllers;
 import com.example.javacontacts.dto.CallListDto;
 import com.example.javacontacts.models.Contact;
 import com.example.javacontacts.services.ContactService;
-import org.h2.command.dml.Call;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -55,14 +54,18 @@ public class ContactController {
 
     @PutMapping(value = "/contacts/{contactId}", consumes = "application/json")
     public ResponseEntity<?> updateContact(@Valid @RequestBody Contact updateContact, @PathVariable long contactId) {
-        updateContact.setContactId(contactId);
-        contactService.save(updateContact);
+        contactService.update(updateContact, contactId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/contacts/{contactId}")
     public ResponseEntity<?> deleteContactById(@PathVariable long contactId) {
         contactService.delete(contactId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @DeleteMapping(value = "/contacts/delete-all")
+    public ResponseEntity<?> deleteAll(){
+        contactService.deleteAll();
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -30,7 +30,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("com.lambdaschool.bookstore"))
+                        .basePackage("com.example.javacontacts"))
                 .paths(PathSelectors.regex("/.*"))
                 .build()
                 .apiInfo(apiEndPointsInfo());
@@ -42,13 +42,13 @@ public class Swagger2Config {
      * @return ApiInfo a Swagger object containing identification information for this application
      */
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Bookstore Model Example")
-                .description("Bookstore Model Example")
-                .contact(new Contact("John Mitchell",
-                        "http://www.lambdaschool.com",
-                        "john@lambdaschool.com"))
+        return new ApiInfoBuilder().title("Contact Model Example")
+                .description("Contact Model Example")
+                .contact(new Contact("Nathaniel Grandelis",
+                        "https://github.com/Grandelisn",
+                        "grandelisn@gmail.com"))
                 .license("MIT")
-                .licenseUrl("https://github.com/LambdaSchool/java-usermodel/blob/master/LICENSE")
+                .licenseUrl("https://github.com/Grandelisn/JavaContacts/blob/main/LICENSE")
                 .version("1.0.0")
                 .build();
     }
