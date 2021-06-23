@@ -6,6 +6,8 @@ Taking time into account, I left out more robust validation, exception handling,
 
 To most easily run the application open the project in Intellij and hit the run command
 
+Screen Shot 2021-06-22 at 11.48.08 PM<img width="423" alt="Screen Shot 2021-06-22 at 11 48 08 PM" src="https://user-images.githubusercontent.com/71465617/123032811-a2924100-d3b4-11eb-8809-225f358b2cd4.png">
+
 
 Also if you have both maven and java downloaded and the proper env variables set you go to the root of the project and run
   mvn exec:java -Dexec.mainClass=com.example.javacontacts.JavaContactsApplication
