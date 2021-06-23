@@ -8,7 +8,7 @@ To most easily run the application open the project in Intellij and hit the run 
 
 
 
-Screen Shot 2021-06-22 at 11.48.08 PM<img width="423" alt="Screen Shot 2021-06-22 at 11 48 08 PM" src="https://user-images.githubusercontent.com/71465617/123032811-a2924100-d3b4-11eb-8809-225f358b2cd4.png">
+<img width="423" alt="Screen Shot 2021-06-22 at 11 48 08 PM" src="https://user-images.githubusercontent.com/71465617/123032811-a2924100-d3b4-11eb-8809-225f358b2cd4.png">
 
 
 
