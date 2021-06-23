@@ -1,7 +1,7 @@
 # JavaContacts
 Personal Challenge to create a backend API to manage contacts with Spring Boot
 
-I chose to use an H2 database so there is no setup required, however there is an example of a toggle that would allow the service to be run on a PostgreSQL database.
+I chose to use an H2 database so there is no setup required, however there is an example of a toggle that would allow the service to be run on a PostgreSQL database. See applications.properties and DataSourceConfig
 Taking time into account, I left out more robust validation, exception handling, and unit tests. However there are examples of each of those throughout the service.
 
 To most easily run the application open the project in Intellij and hit the run command
